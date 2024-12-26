@@ -15,4 +15,8 @@ describe("Ship", () => {
     }
     expect(ship.isSunk()).toBe(true);
   });
+  it("should change the orientation", () => {
+    ship.changeOrientation();
+    expect(ship.isHorizontal).toBe(false);
+  });
 });
