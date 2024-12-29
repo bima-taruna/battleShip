@@ -33,18 +33,6 @@ describe("Gameboard", () => {
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
     ];
-    const arrVertical = [
-      [null, "S", null, null, null, null, null, null, null, null],
-      [null, "S", null, null, null, null, null, null, null, null],
-      [null, "S", null, null, null, null, null, null, null, null],
-      [null, "S", null, null, null, null, null, null, null, null],
-      [null, "S", null, null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null, null, null, null],
-    ];
     const ship = new Ship("ambalator", 5);
     expect(testGameboard.placeShip(0, 1, ship)).toEqual(arr);
   });
