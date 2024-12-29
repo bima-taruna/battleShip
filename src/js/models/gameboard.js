@@ -24,6 +24,9 @@ class Gameboard {
       }
       return this.board;
     }
+    for (let i = x; i < ship.length + x; i++) {
+      this.board[i][y] = "S";
+    }
     return this.board;
   }
 }
