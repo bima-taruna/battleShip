@@ -20,15 +20,17 @@ class Gameboard {
   placeShip(x, y, ship) {
     if (ship.isHorizontal) {
       for (let i = 0; i < ship.length; i++) {
-        this.board[x][y + i] = "S";
+        this.board[x][y + i] = ship.name[0].toUpperCase();
       }
       return this.board;
     }
     for (let i = x; i < ship.length + x; i++) {
-      this.board[i][y] = "S";
+      this.board[i][y] = ship.name[0].toUpperCase();
     }
     return this.board;
   }
+
+  receiveAttack(x, y) {}
 }
 
 module.exports = Gameboard;
