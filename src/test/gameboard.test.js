@@ -22,7 +22,7 @@ describe("Gameboard", () => {
 
   it("should place the ship in the correct horizontal coordinate", () => {
     const arr = [
-      [null, "S", "S", "S", "S", "S", null, null, null, null],
+      [null, "A", "A", "A", "A", "A", null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
@@ -38,7 +38,7 @@ describe("Gameboard", () => {
   });
   it("should place ship in the correct vertical coordinates", () => {
     const arrVertical = [
-      [null, "S", "S", "S", "S", "S", null, null, null, null],
+      [null, "A", "A", "A", "A", "A", null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
       [null, "S", null, null, null, null, null, null, null, null],
       [null, "S", null, null, null, null, null, null, null, null],
@@ -49,8 +49,28 @@ describe("Gameboard", () => {
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
     ];
-    const ship = new Ship("ambalador", 4);
+    const ship = new Ship("sigma", 4);
     ship.changeOrientation();
     expect(testGameboard.placeShip(2, 1, ship)).toEqual(arrVertical);
+  });
+  it("should send ship hit function if call receive attack fun", () => {
+    const arr = [
+      [null, "H", "S", "S", "S", "S", null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, "H", "M", "M", null, null, null, null, null, null],
+      [null, "S", "M", null, null, null, null, null, null, null],
+      [null, "S", null, null, null, null, null, null, null, null],
+      [null, "S", null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null, null, null, null],
+    ];
+    testGameboard.receiveAttack(2, 1);
+    testGameboard.receiveAttack(0, 1);
+    testGameboard.receiveAttack(2, 2);
+    testGameboard.receiveAttack(2, 3);
+    testGameboard.receiveAttack(3, 2);
+    expect(testGameboard.checkBoard()).toEqual(arr);
   });
 });
