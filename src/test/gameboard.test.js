@@ -55,7 +55,7 @@ describe("Gameboard", () => {
   });
   it("should send ship hit function if call receive attack fun", () => {
     const arr = [
-      [null, "H", "S", "S", "S", "S", null, null, null, null],
+      [null, "H", "A", "A", "A", "A", null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
       [null, "H", "M", "M", null, null, null, null, null, null],
       [null, "S", "M", null, null, null, null, null, null, null],
