@@ -1,6 +1,7 @@
 class Gameboard {
   constructor() {
     this.board = this._populateBoard();
+    this.ships = [];
   }
 
   _populateBoard() {
@@ -22,12 +23,23 @@ class Gameboard {
       for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship.name[0].toUpperCase();
       }
+      this.ships.push(ship);
       return this.board;
     }
     for (let i = x; i < ship.length + x; i++) {
       this.board[i][y] = ship.name[0].toUpperCase();
     }
+    this.ships.push(ship);
     return this.board;
+  }
+
+  findShipAtCoordinate(x, y) {
+    for (const ship of this.ships) {
+      if (this.board[x][y].toLowerCase() === ship.name[0]) {
+        return ship;
+      }
+    }
+    return null;
   }
 
   receiveAttack(x, y) {}
