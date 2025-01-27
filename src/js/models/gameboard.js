@@ -35,7 +35,7 @@ class Gameboard {
 
   findShipAtCoordinate(x, y) {
     for (const ship of this.ships) {
-      if (this.board[x][y].toLowerCase() === ship.name[0]) {
+      if (this.board[x][y] === ship.name[0].toUpperCase()) {
         return ship;
       }
     }
@@ -47,9 +47,12 @@ class Gameboard {
     if (ship) {
       ship.hit();
       this.board[x][y] = "H";
+      console.log(`${ship.name} is attacked, and it hit : ${ship.hitPoint}`);
       return this.board;
     }
     this.board[x][y] = "M";
+
+    console.log("none is attacked");
     return this.board;
   }
 }
