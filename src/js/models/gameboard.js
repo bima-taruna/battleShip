@@ -42,7 +42,16 @@ class Gameboard {
     return null;
   }
 
-  receiveAttack(x, y) {}
+  receiveAttack(x, y) {
+    const ship = this.findShipAtCoordinate(x, y);
+    if (ship) {
+      ship.hit();
+      this.board[x][y] = "H";
+      return this.board;
+    }
+    this.board[x][y] = "M";
+    return this.board;
+  }
 }
 
 module.exports = Gameboard;
