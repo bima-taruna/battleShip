@@ -19,6 +19,9 @@ class Gameboard {
   }
 
   placeShip(x, y, ship) {
+    if (x < 0 || x >= 10 || y < 0 || y >= 10) {
+      return;
+    }
     if (ship.isHorizontal) {
       for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship.name[0].toUpperCase();
@@ -43,6 +46,9 @@ class Gameboard {
   }
 
   receiveAttack(x, y) {
+    if (x < 0 || x >= 10 || y < 0 || y >= 10) {
+      return;
+    }
     const ship = this.findShipAtCoordinate(x, y);
     if (ship) {
       ship.hit();
