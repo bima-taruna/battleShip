@@ -84,4 +84,8 @@ describe("Gameboard", () => {
 
     expect(testGameboard.isShipsSunk()).toBe(true);
   });
+
+  it("should return false if attacking same coordinate", () => {
+    expect(testGameboard.receiveAttack(3, 1)).toBe(false);
+  });
 });

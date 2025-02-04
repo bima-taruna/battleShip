@@ -49,6 +49,9 @@ class Gameboard {
     if (x < 0 || x >= 10 || y < 0 || y >= 10) {
       return;
     }
+    if (this.board[x][y] === "M" || this.board[x][y] === "H") {
+      return false;
+    }
     const ship = this.findShipAtCoordinate(x, y);
     if (ship) {
       ship.hit();
