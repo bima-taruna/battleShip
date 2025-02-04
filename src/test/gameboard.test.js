@@ -73,4 +73,15 @@ describe("Gameboard", () => {
     testGameboard.receiveAttack(3, 2);
     expect(testGameboard.checkBoard()).toEqual(arr);
   });
+  it("should tell if all the ships is gone", () => {
+    testGameboard.receiveAttack(3, 1);
+    testGameboard.receiveAttack(4, 1);
+    testGameboard.receiveAttack(5, 1);
+    testGameboard.receiveAttack(0, 2);
+    testGameboard.receiveAttack(0, 3);
+    testGameboard.receiveAttack(0, 4);
+    testGameboard.receiveAttack(0, 5);
+
+    expect(testGameboard.isShipsSunk()).toBe(true);
+  });
 });

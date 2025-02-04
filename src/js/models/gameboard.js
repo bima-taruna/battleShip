@@ -61,6 +61,17 @@ class Gameboard {
     console.log("none is attacked");
     return this.board;
   }
+
+  isShipsSunk() {
+    let status = [];
+    for (const ship of this.ships) {
+      status.push(ship.isSunk());
+    }
+    if (status.includes(false)) {
+      return false;
+    }
+    return true;
+  }
 }
 
 module.exports = Gameboard;
