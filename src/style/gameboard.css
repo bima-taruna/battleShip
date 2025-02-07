@@ -1,0 +1,9 @@
+#gameboard-container {
+  display: flex;
+}
+
+.cell {
+  padding: 1rem;
+  background-color: aqua;
+  border: 1px solid black;
+}
