@@ -2,6 +2,7 @@ class GameboardView {
   constructor(gameboard, containerElement) {
     this.gameboard = gameboard;
     this.container = containerElement;
+    this.renderBoard();
   }
 
   renderBoard() {
@@ -29,4 +30,10 @@ class GameboardView {
       this.container.appendChild(row);
     }
   }
+
+  updateBoard() {
+    this.renderBoard();
+  }
 }
+
+module.exports = GameboardView;
