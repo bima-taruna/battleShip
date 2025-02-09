@@ -2,7 +2,6 @@ class GameboardView {
   constructor(gameboard, containerElement) {
     this.gameboard = gameboard;
     this.container = containerElement;
-    this.renderBoard();
   }
 
   renderBoard() {
@@ -17,14 +16,14 @@ class GameboardView {
 
         cell.dataset.x = x;
         cell.dataset.y = y;
-        cell.textContent = this.gameboard.board[x][y] || "";
 
         if (this.gameboard.board[x][y] === "H") {
           cell.classList.add("hit");
         } else if (this.gameboard.board[x][y] === "M") {
           cell.classList.add("miss");
+        } else if (this.gameboard.board[x][y]) {
+          cell.classList.add("ship");
         }
-
         row.appendChild(cell);
       }
       this.container.appendChild(row);
