@@ -57,6 +57,7 @@ class Gameboard {
     }
     const ship = this.findShipAtCoordinate(x, y);
     if (ship) {
+      if (this.board[x][y] === "H") return;
       ship.hit();
       this.board[x][y] = "H";
       console.log(`${ship.name} is attacked, and it hit : ${ship.hitPoint}`);
