@@ -1,4 +1,4 @@
-#gameboard-container {
+.row {
   display: flex;
 }
 
@@ -6,4 +6,8 @@
   padding: 1rem;
   background-color: aqua;
   border: 1px solid black;
+}
+
+.ship {
+  background-color: blue;
 }
