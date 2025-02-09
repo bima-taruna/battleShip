@@ -22,6 +22,9 @@ class Gameboard {
     if (x < 0 || x >= 10 || y < 0 || y >= 10) {
       return;
     }
+    if (this.board[x][y]) {
+      return;
+    }
     if (ship.isHorizontal) {
       for (let i = 0; i < ship.length; i++) {
         this.board[x][y + i] = ship.name[0].toUpperCase();
