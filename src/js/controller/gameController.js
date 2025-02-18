@@ -23,7 +23,7 @@ class GameController {
     this.updateBoardViews();
     if (opponent.gameboard.isShipSunk()) {
       console.log(`${this.currentPlayer.name} wins!`);
-      this.phase = "gameover";
+      this.endGame();
     } else {
       this.switchTurn();
     }
@@ -36,5 +36,9 @@ class GameController {
 
   startPlayingPhase() {
     this.phase = "playing";
+  }
+
+  endGame() {
+    this.phase = "gameover";
   }
 }
