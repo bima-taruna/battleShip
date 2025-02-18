@@ -21,7 +21,7 @@ class GameController {
       this.currentPlayer === this.player1 ? this.player2 : this.player1;
     opponent.gameboard.receiveAttack(x, y);
     this.updateBoardViews();
-    if (opponent.gameboard.isShipSunk()) {
+    if (opponent.gameboard.isShipsSunk()) {
       console.log(`${this.currentPlayer.name} wins!`);
       this.endGame();
     } else {
