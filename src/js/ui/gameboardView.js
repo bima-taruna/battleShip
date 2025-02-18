@@ -1,7 +1,8 @@
 class GameboardView {
-  constructor(gameboard, containerElement) {
+  constructor(gameboard, containerElement, gameController) {
     this.gameboard = gameboard;
     this.container = containerElement;
+    this.gameController = gameController;
   }
 
   renderBoard() {
@@ -24,10 +25,19 @@ class GameboardView {
         } else if (this.gameboard.board[x][y]) {
           cell.classList.add("ship");
         }
+
+        cell.addEventListener("click", this.handleCellClick.bind(this));
+
         row.appendChild(cell);
       }
       this.container.appendChild(row);
     }
+  }
+
+  handleCellClick(event) {
+    const x = parseInt(event.target.dataset.x, 10);
+    const y = parseInt(event.target.dataset.y, 10);
+    this.gameController.attack(x, y);
   }
 
   updateBoard() {
