@@ -42,3 +42,5 @@ class GameController {
     this.phase = "gameover";
   }
 }
+
+module.exports = GameController;
