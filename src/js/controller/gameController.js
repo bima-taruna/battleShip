@@ -33,4 +33,8 @@ class GameController {
     this.player1GameboardView.updateBoard();
     this.player2GameboardView.updateBoard();
   }
+
+  startPlayingPhase() {
+    this.phase = "playing";
+  }
 }
