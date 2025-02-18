@@ -1,8 +1,9 @@
 class GameboardView {
-  constructor(gameboard, containerElement, gameController) {
+  constructor(gameboard, containerElement, gameController, isEnemy = false) {
     this.gameboard = gameboard;
     this.container = containerElement;
     this.gameController = gameController;
+    this.isEnemy = isEnemy;
   }
 
   renderBoard() {
@@ -25,9 +26,7 @@ class GameboardView {
         } else if (this.gameboard.board[x][y]) {
           cell.classList.add("ship");
         }
-
         cell.addEventListener("click", this.handleCellClick.bind(this));
-
         row.appendChild(cell);
       }
       this.container.appendChild(row);
@@ -37,7 +36,17 @@ class GameboardView {
   handleCellClick(event) {
     const x = parseInt(event.target.dataset.x, 10);
     const y = parseInt(event.target.dataset.y, 10);
-    this.gameController.attack(x, y);
+    if (
+      this.isEnemy &&
+      this.gameController.currentPlayer === this.gameController.player1
+    ) {
+      this.gameController.attack(x, y);
+    } else if (
+      !this.isEnemy &&
+      this.gameController.currentPlayer === this.gameController.player2
+    ) {
+      this.gameController.attack(x, y);
+    }
   }
 
   updateBoard() {
