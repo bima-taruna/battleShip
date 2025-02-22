@@ -60,13 +60,19 @@ class Gameboard {
       if (this.board[x][y] === "H") return;
       ship.hit();
       this.board[x][y] = "H";
-      console.log(`${ship.name} is attacked, and it hit : ${ship.hitPoint}`);
-      return this.board;
+      return {
+        ship: ship.name,
+        result: true,
+        board: this.board,
+      };
     }
     this.board[x][y] = "M";
 
     console.log("none is attacked");
-    return this.board;
+    return {
+      result: false,
+      board: this.board,
+    };
   }
 
   isShipsSunk() {

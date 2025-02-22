@@ -29,14 +29,22 @@ class GameController {
     ) {
       return;
     }
-    opponent.gameboard.receiveAttack(x, y);
+    const result = opponent.gameboard.receiveAttack(x, y);
     this.updateBoardViews();
-    console.log(`${this.currentPlayer.name} attacks ${x}, ${y}`);
     if (opponent.gameboard.isShipsSunk()) {
       console.log(`${this.currentPlayer.name} wins!`);
       this.endGame();
     } else {
       this.switchTurn();
+    }
+    if (result.result) {
+      return {
+        message: `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit opponent's ${result.ship}!`,
+      };
+    } else {
+      return {
+        message: `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit nothing!`,
+      };
     }
   }
 
