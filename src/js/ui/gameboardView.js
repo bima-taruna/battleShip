@@ -23,7 +23,7 @@ class GameboardView {
           cell.classList.add("hit");
         } else if (this.gameboard.board[x][y] === "M") {
           cell.classList.add("miss");
-        } else if (this.gameboard.board[x][y]) {
+        } else if (this.gameboard.board[x][y] && !this.isEnemy) {
           cell.classList.add("ship");
         }
         cell.addEventListener("click", this.handleCellClick.bind(this));
