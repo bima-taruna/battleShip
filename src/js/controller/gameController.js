@@ -1,12 +1,15 @@
+const GameboardView = require("../ui/gameboardView");
+const { default: GameView } = require("../ui/gameView");
+
 class GameController {
-  constructor(player1, player2, player1GameboardView, player2GameboardView) {
+  constructor(player1, player2, containerElement) {
     this.player1 = player1;
     this.player2 = player2;
-    this.player1GameboardView = player1GameboardView;
-    this.player2GameboardView = player2GameboardView;
+    this.containerElement = containerElement;
     this.currentPlayer = player1;
     // this.currentGameboardView = player1GameboardView;
-    this.phase = "playing";
+    this.phase = "setup";
+    this.gameView = new GameView(containerElement);
   }
 
   switchTurn() {
@@ -54,12 +57,37 @@ class GameController {
   }
 
   updateBoardViews() {
-    this.player1GameboardView.updateBoard();
-    this.player2GameboardView.updateBoard();
+    if (this.phase === "playing") {
+      this.player1GameboardView.updateBoard();
+      this.player2GameboardView.updateBoard();
+    }
   }
 
   startPlayingPhase() {
     this.phase = "playing";
+
+    // First render the GameView to create the container elements
+    this.gameView.render();
+
+    // Now the container elements exist, so we can create the GameboardViews
+    this.player1GameboardView = new GameboardView(
+      this.player1.gameboard,
+      document.getElementById("player-gameboard-container"),
+      this,
+      false
+    );
+    this.player2GameboardView = new GameboardView(
+      this.player2.gameboard,
+      document.getElementById("enemy-gameboard-container"),
+      this,
+      true
+    );
+
+    // Render the gameboards
+    this.player1GameboardView.renderBoard();
+    this.player2GameboardView.renderBoard();
+
+    this.updateBoardViews();
   }
 
   endGame() {
