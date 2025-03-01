@@ -20,6 +20,6 @@ body {
   cursor: pointer;
 }
 
-#gameboard-container > .row > .ship {
+#player-gameboard-container > .row > .ship {
   background-color: blue;
 }
