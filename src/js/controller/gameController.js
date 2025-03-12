@@ -31,25 +31,27 @@ class GameController {
       return;
     }
     const result = opponent.gameboard.receiveAttack(x, y);
-    if (result.result) {
-      this.gameView.handleGameInfo(
-        `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit opponent's ${result.ship}!`
-      );
-    } else {
-      this.gameView.handleGameInfo(
-        `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit nothing!`
-      );
-    }
-    this.updateBoardViews();
-    if (opponent.gameboard.isShipsSunk()) {
-      this.gameView.handleGameInfo(`${this.currentPlayer.name} wins!`);
-      this.endGame();
-    } else {
-      setTimeout(() => {
-        this.switchTurn();
-        this.gameView.handleGameInfo(`${this.currentPlayer.name}'s turn`);
-      }, 2000);
-    }
+    const attackMessage = `${this.currentPlayer.name} attacks ${x}, ${y} ...`;
+    this.gameView.handleGameInfo(attackMessage);
+    setTimeout(() => {
+      if (result.result) {
+        this.gameView.handleGameInfo(
+          `${attackMessage} and hit opponent's ${result.ship}!`
+        );
+      } else {
+        this.gameView.handleGameInfo(`${attackMessage} and hit nothing!`);
+      }
+      this.updateBoardViews();
+      if (opponent.gameboard.isShipsSunk()) {
+        this.gameView.handleGameInfo(`${this.currentPlayer.name} wins!`);
+        this.endGame();
+      } else {
+        setTimeout(() => {
+          this.switchTurn();
+          this.gameView.handleGameInfo(`${this.currentPlayer.name}'s turn`);
+        }, 2000);
+      }
+    }, 1000);
   }
 
   placeShip(player, x, y, ship) {
