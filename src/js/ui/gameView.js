@@ -5,18 +5,23 @@ class GameView {
 
   render() {
     this.container.innerHTML = "";
-
+    const gameboardContainer = document.createElement("div");
     const playerGameboardContainer = document.createElement("div");
     const enemyGameboardContainer = document.createElement("div");
-    const gameInfoContainer = document.createElement("div");
-
+    this.gameInfoContainer = document.createElement("div");
+    gameboardContainer.id = "gameboard-container";
     playerGameboardContainer.id = "player-gameboard-container";
     enemyGameboardContainer.id = "enemy-gameboard-container";
-    gameInfoContainer.id = "game-info-container";
+    this.gameInfoContainer.id = "game-info-container";
+    gameboardContainer.appendChild(playerGameboardContainer);
+    gameboardContainer.appendChild(enemyGameboardContainer);
+    this.container.appendChild(gameboardContainer);
+    this.container.appendChild(this.gameInfoContainer);
+  }
 
-    this.container.appendChild(playerGameboardContainer);
-    this.container.appendChild(enemyGameboardContainer);
-    this.container.appendChild(gameInfoContainer);
+  handleGameInfo(string) {
+    this.gameInfoContainer.textContent = "";
+    this.gameInfoContainer.textContent = string;
   }
 }
 
