@@ -16,8 +16,6 @@ class GameController {
     this.currentPlayer =
       this.currentPlayer === this.player1 ? this.player2 : this.player1;
     // this.currentGameboardView = this.currentPlayer === this.player1 ? this.player1GameboardView : this.player2GameboardView;
-
-    console.log(`${this.currentPlayer.name}'s turn`);
   }
 
   attack(x, y) {
@@ -33,21 +31,22 @@ class GameController {
       return;
     }
     const result = opponent.gameboard.receiveAttack(x, y);
+    if (result.result) {
+      this.gameView.handleGameInfo(
+        `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit opponent's ${result.ship}!`
+      );
+    } else {
+      this.gameView.handleGameInfo(
+        `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit nothing!`
+      );
+    }
     this.updateBoardViews();
     if (opponent.gameboard.isShipsSunk()) {
-      console.log(`${this.currentPlayer.name} wins!`);
+      this.gameView.handleGameInfo(`${this.currentPlayer.name} wins!`);
       this.endGame();
     } else {
       this.switchTurn();
-    }
-    if (result.result) {
-      return {
-        message: `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit opponent's ${result.ship}!`,
-      };
-    } else {
-      return {
-        message: `${this.currentPlayer.name} attacks ${x}, ${y} ...  and hit nothing!`,
-      };
+      this.gameView.handleGameInfo(`${this.currentPlayer.name}'s turn`);
     }
   }
 
