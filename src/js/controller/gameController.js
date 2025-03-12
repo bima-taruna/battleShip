@@ -45,8 +45,10 @@ class GameController {
       this.gameView.handleGameInfo(`${this.currentPlayer.name} wins!`);
       this.endGame();
     } else {
-      this.switchTurn();
-      this.gameView.handleGameInfo(`${this.currentPlayer.name}'s turn`);
+      setTimeout(() => {
+        this.switchTurn();
+        this.gameView.handleGameInfo(`${this.currentPlayer.name}'s turn`);
+      }, 2000);
     }
   }
 
